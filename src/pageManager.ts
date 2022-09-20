@@ -1,3 +1,4 @@
+// @ts-ignore
 import urlJoin from "url-join";
 import Page, { StyleProperties } from "./components/page";
 import {
@@ -30,7 +31,7 @@ class PageManager {
   queuedPage: { pageFilePath: string; innerLocation: InnerLocation } | null =
     null;
   makingPage: boolean = false;
-
+  theme: string = 'white';
   quickSelection = new QuickSelection();
   additionalCSSElement: HTMLStyleElement;
   fontCSSElement: HTMLStyleElement;
@@ -130,6 +131,7 @@ class PageManager {
   }
 
   quickClicked = false;
+  // @ts-ignore
   selectionDelay: NodeJS.Timeout | null = null;
 
   onSelection() {
@@ -210,7 +212,6 @@ class PageManager {
 
         window.history.pushState("", "", "/");
         const html = await (await fetch(pageFilePath)).text();
-
         this.page?.destroy();
         this.pageFilePath = pageFilePath;
         window.history.pushState("", "", pageFilePath);

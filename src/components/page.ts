@@ -21,6 +21,8 @@ export interface StyleProperties {
     top: number;
     bottom: number;
   };
+  backgroundColor: string,
+  color: string,
   fontSizeMultiplier: number;
   lineHeightMultiplier: number;
   letterSpacingAdder: number;
@@ -187,6 +189,8 @@ class Page {
   private _pageElements: {
     element: HTMLElement;
     originalStyles: {
+      backgroundColor: string;
+      color: string;
       fontSize: string;
       lineHeight: string;
       letterSpacing: string;
@@ -200,11 +204,14 @@ class Page {
   }[] = [];
 
   initialize = () => {
+    this.container.style.backgroundColor = this.style.backgroundColor;
     this._element.querySelectorAll("*").forEach((elem) => {
       const styles = window.getComputedStyle(elem);
       this._pageElements.push({
         element: elem as HTMLElement,
         originalStyles: {
+          backgroundColor: styles.backgroundColor,
+          color: styles.color,
           fontSize: styles.fontSize,
           lineHeight: styles.lineHeight,
           letterSpacing: styles.letterSpacing,
@@ -313,12 +320,16 @@ class Page {
   };
 
   private applyStyle = () => {
+    this.container.style.backgroundColor = this.style.backgroundColor;
     this._element.style.width = `calc(100vw - ${this.style.margin.side * 2}px)`;
     this._element.style.height = `calc(100vh - ${this.style.margin.top}px - ${this.style.margin.bottom}px)`;
     this._element.style.margin = `${this.style.margin.top}px ${this.style.margin.side}px ${this.style.margin.bottom}px ${this.style.margin.side}px`;
     this._element.style.columnGap = `${this.style.margin.side}px`;
 
     this._pageElements.forEach((props) => {
+      props.element.style.backgroundColor = this.style.backgroundColor;
+      props.element.style.color = this.style.color;
+
       props.element.style.fontSize = `${
         parseFloat(props.originalStyles.fontSize) *
         this.style.fontSizeMultiplier
