@@ -41,6 +41,8 @@ class PageManager {
       top: 50,
       bottom: 20,
     },
+    backgroundColor: "#000",
+    color: "#fff",
     fontSizeMultiplier: 1.125,
     lineHeightMultiplier: 1.2,
     weightMultiplier: 1,

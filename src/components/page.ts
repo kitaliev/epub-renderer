@@ -327,7 +327,7 @@ class Page {
     this._element.style.columnGap = `${this.style.margin.side}px`;
 
     this._pageElements.forEach((props) => {
-      props.element.style.backgroundColor = this.style.backgroundColor;
+      // props.element.style.backgroundColor = this.style.backgroundColor;
       props.element.style.color = this.style.color;
 
       props.element.style.fontSize = `${
