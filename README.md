@@ -1,3 +1,11 @@
+Как эту хрень запустить
+
+npm install
+
+и заблидить новые файлы которые необходимы для того чтоб в приложении забилдить новые
+html css js файлы
+
+
 # Epub Renderer
 
 An EPUB Renderer for my [Book Reader](https://github.com/FlafyDev/epub-reader).
